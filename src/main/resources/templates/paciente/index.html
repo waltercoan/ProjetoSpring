@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<table>
+			<thead> 
+				<tr>
+					<td>Nome</td>
+					<td>Sexo</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="umpac : ${listapac}">
+					<td th:text="${umpac.nome}"></td>
+					<td th:text="${umpac.sexo}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>
