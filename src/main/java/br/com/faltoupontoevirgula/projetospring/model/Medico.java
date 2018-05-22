@@ -22,6 +22,7 @@ public class Medico {
 	private String CRM;
 	
 	@ManyToMany(cascade= {CascadeType.MERGE,CascadeType.REFRESH})
+	@JoinColumn(name="procedimento_id")
 	List<Procedimento> listaProcedAutorizados = new ArrayList<Procedimento>();
 	
 	public long getId() {
