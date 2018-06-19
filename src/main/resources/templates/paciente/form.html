@@ -19,10 +19,30 @@
 				            <option th:value="Outro">Outro</option>
 				        </select>
 				    </div>
+				    
+		          <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+			      
+				    
+				    
+				    
 				    <button type="submit" class="btn btn-primary">Enviar</button>
 				</form>
 			</div>
 		</div>
 		<div th:include="layout :: footer" id="footer">(footer)</div>
+		<script type="text/javascript">
+		$(function () {
+            $('#datetimepicker1').datetimepicker();
+        });
+	    </script>
 	</body>
 </html>

@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head th:fragment="htmlhead">
 		<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}" />
+		<link rel="stylesheet" th:href="@{/webjars/eonasdan-bootstrap-datetimepicker/4.17.47/build/css/bootstrap-datetimepicker.min.css}" />
 	</head>
 	<body>
 		<nav th:fragment="menu" class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -21,6 +22,10 @@
 		<div th:fragment="footer" id="footer">
 			<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
 			<script th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
+			<!--<script th:src="@{/webjars/modernizr/2.8.3/modernizr.min.js}"></script>-->
+			<script th:src="@{/webjars/moment/2.22.2/min/moment.min.js}"></script>
+			<script th:src="@{/webjars/eonasdan-bootstrap-datetimepicker/4.17.47/build/js/bootstrap-datetimepicker.min.js}"></script>
+
 		</div>
 	</body>
 </html>
