@@ -11,6 +11,9 @@
 						<tr>
 							<th scope="col">Nome</th>
 							<th scope="col">Sexo</th>
+							<th scope="col">Data Nascimento</th>
+							<th scope="col">CPF</th>
+							<th scope="col">Cidade</th>
 							<th scope="col"></th>
 						</tr>
 					</thead>
@@ -18,6 +21,9 @@
 						<tr scope="row" th:each="umpac : ${listapac}">
 							<td th:text="${umpac.nome}"></td>
 							<td th:text="${umpac.sexo}"></td>
+							<td th:text="${#dates.format(umpac.dataNascimento, 'dd/MM/yyyy HH:mm')}"></td>
+							<td th:text="${umpac.CPF}"></td>
+							<td th:text="${umpac.cidade.nome}"></td>
 							<td>
 								<a href="form.html" th:href="@{'/paciente/alterar/' + ${umpac.id}}" class="btn btn-secondary btn-lg" role="button">Alterar</a>
 								<a href="#" class="btn btn-warning btn-lg" role="button" data-toggle="modal" data-target="#confirmaExclusao" th:data-id="${umpac.id}">Excluir</a>

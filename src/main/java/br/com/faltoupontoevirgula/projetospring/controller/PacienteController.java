@@ -1,5 +1,6 @@
 package br.com.faltoupontoevirgula.projetospring.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.faltoupontoevirgula.projetospring.model.Cidade;
 import br.com.faltoupontoevirgula.projetospring.model.Paciente;
+import br.com.faltoupontoevirgula.projetospring.repository.CidadeRepository;
 import br.com.faltoupontoevirgula.projetospring.repository.PacienteRepository;
 
 
@@ -25,6 +28,9 @@ public class PacienteController {
 	
 	@Autowired
 	private PacienteRepository pacienteRepository;
+	
+	@Autowired
+	private CidadeRepository cidadeRepository;
 
 	@GetMapping("")
 	public ModelAndView index() {
@@ -33,8 +39,9 @@ public class PacienteController {
 		return new ModelAndView("paciente/index","listapac",listaPaciente);
 	}
 	@GetMapping("/novo")
-	public String createForm(@ModelAttribute Paciente paciente) {
-		return "paciente/form";
+	public ModelAndView createForm(@ModelAttribute Paciente paciente) {
+		List<Cidade> listaCidades = cidadeRepository.findAll();
+		return new ModelAndView("paciente/form","listacidades",listaCidades);
 	}
 	
 	@PostMapping(params="form")
@@ -45,7 +52,12 @@ public class PacienteController {
 	
 	@GetMapping(value="/alterar/{id}")
 	public ModelAndView alterarForm(@PathVariable("id") Paciente paciente) {
-		return new ModelAndView("paciente/form","paciente",paciente);
+		List<Cidade> listaCidades = cidadeRepository.findAll();
+		HashMap<String, Object> dados = new HashMap<String, Object>();
+		dados.put("paciente",paciente);
+		dados.put("listacidades",listaCidades);
+		
+		return new ModelAndView("paciente/form",dados);
 	}
 	
 	@GetMapping(value="remover/{id}")
