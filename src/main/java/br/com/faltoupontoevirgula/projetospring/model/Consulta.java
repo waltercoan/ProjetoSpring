@@ -16,11 +16,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Consulta {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
+	@DateTimeFormat(pattern = "dd/MM/yyyy H:mm")
 	@Temporal(value=TemporalType.TIMESTAMP)
 	private Date data;
 	@Column(length=10000)
@@ -32,7 +35,7 @@ public class Consulta {
 	@ManyToOne(cascade= {CascadeType.MERGE,CascadeType.REFRESH})
 	private Medico medicoResponsavel;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL,orphanRemoval=true)
 	@JoinColumn(name="consulta_id")
 	private List<ProcedimentoRealizado> listaProcedimentos = new ArrayList<ProcedimentoRealizado>();
 
