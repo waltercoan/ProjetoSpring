@@ -61,22 +61,6 @@ public class ConsultaController {
 		return new ModelAndView("consulta/form",dados);
 	}
 	
-	@GetMapping(value="/alterar/{id}")
-	public ModelAndView alterarForm(@PathVariable("id") Consulta consulta) {
-		List<Medico> listaMedico = this.medicoRepository.findAll();
-		List<Paciente> listaPaciente = this.pacienteRepository.findAll();
-		List<Procedimento> listaProcedimento = this.procedimentoRepository.findAll();
-		
-		HashMap<String, Object> dados = new HashMap<String, Object>();
-		dados.put("consulta", consulta);
-		dados.put("listaMedico", listaMedico);
-		dados.put("listaPaciente", listaPaciente);
-		dados.put("listaProcedimento", listaProcedimento);
-		dados.put("novoprocrealizado", new ProcedimentoRealizado());
-		
-		return new ModelAndView("consulta/form",dados);
-	}
-	
 	@PostMapping(params= {"save"})
 	public ModelAndView save(@Valid Consulta consulta, @Valid ProcedimentoRealizado novoprocrealizado, BindingResult result, RedirectAttributes redirect) {
 		consulta = this.consultaRepository.save(consulta);
@@ -120,10 +104,30 @@ public class ConsultaController {
 		return new ModelAndView("consulta/form",dados);
 	}
 	
+	@GetMapping(value="/alterar/{id}")
+	public ModelAndView alterarForm(@PathVariable("id") Consulta consulta) {
+		List<Medico> listaMedico = this.medicoRepository.findAll();
+		List<Paciente> listaPaciente = this.pacienteRepository.findAll();
+		List<Procedimento> listaProcedimento = this.procedimentoRepository.findAll();
+		
+		HashMap<String, Object> dados = new HashMap<String, Object>();
+		dados.put("consulta", consulta);
+		dados.put("listaMedico", listaMedico);
+		dados.put("listaPaciente", listaPaciente);
+		dados.put("listaProcedimento", listaProcedimento);
+		dados.put("novoprocrealizado", new ProcedimentoRealizado());
+		
+		return new ModelAndView("consulta/form",dados);
+	}
+	
+	
+	
+	
 	@GetMapping(value="remover/{id}")
 	public ModelAndView remover(@PathVariable ("id") Long id, RedirectAttributes redirect) {
 		this.consultaRepository.deleteById(id);
 		return new ModelAndView("redirect:/consulta");
 	}
+	
 	
 }
