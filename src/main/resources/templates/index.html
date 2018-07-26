@@ -2,9 +2,25 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head th:include="layout :: htmlhead"></head>
 	<body>
+		<!--<div th:text="${id}"></div>-->
 		<div class="container">
-			<nav th:replace="layout :: menu">(menu)</nav>
+			<nav th:replace="layout :: menu">
+			(menu)
+			</nav>
+			
 			<center><image th:src="@{/images/drnick.jpg}"/></center>
+			
+			<div class="row">
+			  <div class="col-sm-3" th:each="umproduto : ${listProdutos}">
+			    <div class="card">
+			      <div class="card-body">
+			        <h5 class="card-title" th:text="${umproduto.descricao}"></h5>
+			        <p class="card-text" th:text="${umproduto.preco}"></p>
+			        <a th:href="@{'/carrinho/add/' + ${umproduto.id}}" class="btn btn-primary">Comprar</a>
+			      </div>
+			    </div>
+			  </div>
+			</div>
 		</div>
 		<div th:include="layout :: footer" id="footer">(footer)</div>
 	</body>
