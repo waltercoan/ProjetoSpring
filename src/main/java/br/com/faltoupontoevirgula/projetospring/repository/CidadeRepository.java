@@ -7,5 +7,5 @@ import br.com.faltoupontoevirgula.projetospring.model.Cidade;
 
 @Repository
 public interface CidadeRepository extends JpaRepository<Cidade, Long>{
-
+	
 }

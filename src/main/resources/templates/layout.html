@@ -23,6 +23,13 @@
 			        <a class="nav-link" href="/consulta">Consulta</a>
 			      </li>
 			    </ul>
+			    <spawn th:inline="text" class="navbar-brand">Hello [[${#httpServletRequest.remoteUser}]]!</spawn>
+		        <form th:action="@{/logout}" method="post">
+		        	<input type="hidden"
+					    th:name="${_csrf.parameterName}"
+					    th:value="${_csrf.token}"/> 
+		            <input type="submit" value="Sair" class="btn"/>
+		        </form>
 		    </div>
 		</nav>
 		
