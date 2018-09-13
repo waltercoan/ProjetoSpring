@@ -19,9 +19,21 @@ public class StartupEventListenerBean {
 			Usuario user = new Usuario();
 			user.setUsername("user");
 			user.setPassword("user");
-			user.setRole("USER");
+			user.setRole("ROLE_ADMIN");
+			usuarioRepository.save(user);
+
+
+		}
+
+		if(usuarioRepository.findByUsername("teste") == null) {
+			Usuario user = new Usuario();
+			user = new Usuario();
+			user.setUsername("teste");
+			user.setPassword("teste");
+			user.setRole("ROLE_TESTE");
 			usuarioRepository.save(user);
 		}
+		
 
 
 	}
