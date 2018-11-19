@@ -98,6 +98,10 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<fork>true</fork>
+	                <executable>C:\Program Files\Java\jdk1.8.0_171\bin\javac.exe</executable>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>com.spotify</groupId>
