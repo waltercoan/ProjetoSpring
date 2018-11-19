@@ -16,6 +16,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
@@ -32,6 +33,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private MyUserDetailsService userDetailsService;
+	
+	private String[] resources = new String[]{
+            "/", "/home","/pictureCheckCode","/include/**",
+            "/css/**","/icons/**","/images/**","/js/**","/layer/**", "/api/**"
+    };
+	
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers(resources);
+	}
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -54,11 +65,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		String[] resources = new String[]{
-                "/", "/home","/pictureCheckCode","/include/**",
-                "/css/**","/icons/**","/images/**","/js/**","/layer/**"
-        };
 		
+		/*
 		http
 		.authorizeRequests()
 			.anyRequest().authenticated()
@@ -67,8 +75,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.formLogin()
             .loginPage("/login")
             .successForwardUrl("/")
-            .permitAll();
+            .permitAll();*/
 		
+		http.authorizeRequests().anyRequest().permitAll();
 		
 	}
 	@Bean
